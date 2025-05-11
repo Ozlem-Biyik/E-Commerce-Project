@@ -1,11 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { thunk } from 'redux-thunk'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
+import logger from 'redux-logger';
 
-const store = configureStore({
-  reducer: {
-    // reducerlar buraya eklenecek
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
-})
+// Import reducers
+import clientReducer from './reducers/clientReducer';
+import productReducer from './reducers/productReducer';
+import shoppingCartReducer from './reducers/shoppingCartReducer';
 
-export default store 
+// Combine reducers
+const rootReducer = combineReducers({
+  client: clientReducer,
+  product: productReducer,
+  shoppingCart: shoppingCartReducer
+});
+
+// Create store with middleware
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk, logger)
+);
+
+export default store; 

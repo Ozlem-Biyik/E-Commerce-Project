@@ -1,22 +1,17 @@
-import { useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import './App.css'
+import React from 'react';
+import './App.css';
+import Header from './layout/Header';
+import PageContent from './layout/PageContent';
+import Footer from './layout/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="container mx-auto py-8 px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">E-Commerce Projesi</h1>
-        <Switch>
-          <Route exact path="/">
-            <div className="text-center">
-              <p className="mb-4">E-Commerce projesi başarıyla oluşturuldu!</p>
-            </div>
-          </Route>
-        </Switch>
-      </main>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <PageContent />
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App 
+export default App; 
